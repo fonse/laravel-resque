@@ -1,0 +1,25 @@
+{
+    "name": "awellis13/laravel-resque",
+    "description": "Laravel Resque connector for Queue.",
+    "keywords": ["laravel", "resque", "queue"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrew Ellis",
+            "email": "awellis@me.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/config": "4.0.x",
+        "illuminate/queue": "4.0.x",
+        "chrisboulton/php-resque": "1.2.x",
+        "chrisboulton/php-resque-scheduler": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "Awellis13\\Resque": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
