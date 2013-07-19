@@ -3,7 +3,7 @@
 use Config;
 use Resque;
 use ResqueScheduler;
-use Queue\ResqueQueue;
+use Awellis\Resque\ResqueQueue;
 use Illuminate\Queue\Connectors\ConnectorInterface;
 
 /**
