@@ -19,7 +19,7 @@ class ResqueQueue extends Queue {
 	 * @param array  $parameters
 	 * @return mixed
 	 */
-	public function __callStatic($method, $parameters)
+	public static function __callStatic($method, $parameters)
 	{
 		if (method_exists('Resque', $method))
 		{
@@ -30,7 +30,7 @@ class ResqueQueue extends Queue {
 			return call_user_func_array(array('RescueScheduler', $method), $parameters);
 		}
 
-		return call_user_func_array(array('Queue', $method,) $parameters);
+		return call_user_func_array(array('Queue', $method), $parameters);
 	}
 
 	/**
