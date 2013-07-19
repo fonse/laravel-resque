@@ -19,7 +19,7 @@ class ResqueQueue extends Queue {
 	 * @param array  $parameters
 	 * @return mixed
 	 */
-	public function __callStatic($method, $parameters)
+	public static function __callStatic($method, $parameters)
 	{
 		if (method_exists('Resque', $method))
 		{
