@@ -30,7 +30,7 @@ class ResqueQueue extends Queue {
 			return call_user_func_array(array('RescueScheduler', $method), $parameters);
 		}
 
-		return call_user_func_array(array('Queue', $method,) $parameters);
+		return call_user_func_array(array('Queue', $method), $parameters);
 	}
 
 	/**
