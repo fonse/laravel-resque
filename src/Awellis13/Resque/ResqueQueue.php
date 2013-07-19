@@ -1,4 +1,4 @@
-<?php namespace Queue;
+<?php namespace Awellis13\Resque;
 
 use Resque;
 use ResqueScheduler;
@@ -27,10 +27,10 @@ class ResqueQueue extends Queue {
 		}
 		else if (method_exists('ResqueScheduler', $method))
 		{
-			return call_user_func_array(array('RescueScheduler', $method), $paramters);
+			return call_user_func_array(array('RescueScheduler', $method), $parameters);
 		}
 
-		return parent::__callStatic($method, $parameters);
+		return call_user_func_array(array('Queue', $method,) $parameters);
 	}
 
 	/**
