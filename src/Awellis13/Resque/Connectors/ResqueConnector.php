@@ -21,7 +21,17 @@ class ResqueConnector implements ConnectorInterface {
 	 */
 	public function connect(array $config)
 	{
-		Resque::setBackend(Config::get('database.redis.default.host').':'.Config::get('database.redis.default.port'));
+		if (!isset($config['host']))
+		{
+			$config = Config::get('database.redis.default');
+		}
+
+		if (!isset($config['port']))
+		{
+			$config['port'] = 6379;
+		}
+
+		Resque::setBackend($config['host'].':'.$config['port']);
 		return new ResqueQueue;
 	}
 
