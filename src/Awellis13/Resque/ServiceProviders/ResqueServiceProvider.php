@@ -2,6 +2,7 @@
 
 use Config;
 use Awellis13\Resque\Connectors\ResqueConnector;
+use Awellis13\Resque\Console\ListenCommand;
 use Illuminate\Queue\QueueServiceProvider;
 
 /**
@@ -18,6 +19,14 @@ class ResqueServiceProvider extends QueueServiceProvider {
 	{
 		parent::registerConnectors($manager);
 		$this->registerResqueConnector($manager);
+	}
+	
+	/**
+	 * {@inheritdoc}
+	 */
+	public function boot()
+	{
+		$this->registerCommand();
 	}
 
 	/**
@@ -46,6 +55,22 @@ class ResqueServiceProvider extends QueueServiceProvider {
 			Config::set('queue.connections.resque', array_merge($config, ['driver' => 'resque']));
 			return new ResqueConnector;
 		});
+	}
+	
+	/**
+	 * Register the artisan command.
+	 *
+	 * @return void
+	 */
+	public function registerCommand()
+	{
+		$this->app['command.resque.listen'] = $this->app->share(
+			function ($app) {
+				return new ListenCommand();
+			}
+		);
+
+		$this->commands('command.resque.listen');
 	}
 
 } // End ResqueServiceProvider
